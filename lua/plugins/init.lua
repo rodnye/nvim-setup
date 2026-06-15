@@ -1,28 +1,35 @@
 return {
   {
     "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
+    -- event = 'BufWritePre',
     opts = require "configs.conform",
   },
-
-  -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
     config = function()
       require "configs.lspconfig"
     end,
   },
-
-  -- test new blink
+  
+  {
+	"nvim-treesitter/nvim-treesitter",
+	build = ":TSUpdate",
+  lazy = false,
+	opts = {
+			ensure_installed = {
+				"vim", "lua", "vimdoc",
+        "html", "css",
+        "javascript", "typescript", "tsx",  -- React/TypeScript
+        "vue",                               -- Vue
+        "astro",                             -- Astro
+        "svelte",                            -- Svelte
+        "rust",
+			},
+			highlight = {
+				enable = {},
+			},
+      auto_install = true,
+		}
+}
   -- { import = "nvchad.blink.lazyspec" },
-
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
 }
